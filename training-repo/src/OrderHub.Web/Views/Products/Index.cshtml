@@ -3,7 +3,10 @@
     ViewData["Title"] = "商品列表";
 }
 
-<h1 class="h3 mb-3">商品列表</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">商品列表</h1>
+    <a class="btn btn-outline-warning" asp-action="LowStock">低庫存警示</a>
+</div>
 
 <table class="table table-hover align-middle">
     <thead>

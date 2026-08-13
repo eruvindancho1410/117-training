@@ -1,5 +1,6 @@
 using OrderHub.Core.Domain;
 using OrderHub.Core.Interfaces;
+using OrderHub.Core.Common;
 
 namespace OrderHub.Core.Services;
 
@@ -15,4 +16,13 @@ public class ProductService : IProductService
     public Task<IReadOnlyList<Product>> GetAllAsync() => _productRepository.GetAllAsync();
 
     public Task<IReadOnlyList<Product>> GetActiveAsync() => _productRepository.GetActiveAsync();
+
+    public async Task<ServiceResult<IReadOnlyList<LowStockProduct>>> GetLowStockAsync(int threshold)
+    {
+        if (threshold <= 0)
+            return ServiceResult<IReadOnlyList<LowStockProduct>>.Fail("庫存門檻必須大於 0");
+
+        var products = await _productRepository.GetLowStockAsync(threshold, DateTime.UtcNow.AddDays(-30));
+        return ServiceResult<IReadOnlyList<LowStockProduct>>.Ok(products);
+    }
 }
