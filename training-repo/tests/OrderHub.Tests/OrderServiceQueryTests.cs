@@ -41,6 +41,51 @@ public class OrderServiceQueryTests
     }
 
     [Fact]
+    public async Task GetOrders_FirstPageStartsWithNewestOrder()
+    {
+        using var db = TestSetup.CreateContext();
+        var service = TestSetup.CreateOrderService(db);
+        var customer = TestSetup.AddCustomer(db);
+        var newestOrder = new Order
+        {
+            CustomerId = customer.Id,
+            Status = OrderStatus.Pending,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        db.Orders.Add(new Order
+        {
+            CustomerId = customer.Id,
+            Status = OrderStatus.Pending,
+            CreatedAt = newestOrder.CreatedAt.AddMinutes(-1)
+        });
+        db.Orders.Add(newestOrder);
+        db.SaveChanges();
+
+        var result = await service.GetOrdersAsync(1, 20, null);
+
+        Assert.Equal(newestOrder.Id, result.Items[0].Id);
+        Assert.Equal(2, result.Items.Count);
+    }
+
+    [Fact]
+    public async Task GetOrders_LastPageContainsRemainingOrders()
+    {
+        using var db = TestSetup.CreateContext();
+        var service = TestSetup.CreateOrderService(db);
+        var customer = TestSetup.AddCustomer(db);
+
+        for (var i = 0; i < 45; i++)
+            db.Orders.Add(new Order { CustomerId = customer.Id, Status = OrderStatus.Confirmed, CreatedAt = DateTime.UtcNow.AddMinutes(-i) });
+        db.SaveChanges();
+
+        var result = await service.GetOrdersAsync(3, 20, null);
+
+        Assert.Equal(5, result.Items.Count);
+        Assert.Equal(3, result.TotalPages);
+    }
+
+    [Fact]
     public async Task GetCustomerOrders_ReturnsOnlyThatCustomersOrders()
     {
         using var db = TestSetup.CreateContext();

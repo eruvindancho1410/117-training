@@ -1,2 +1,4 @@
 2026-08-13 15:35:00  apply_patch  sample.txt
 2026-08-13 15:44:36  apply_patch  text.txt
+2026-08-13 17:09:21  apply_patch  C:\Users\dm117\117-training\training-repo\src\OrderHub.Infrastructure\Repositories\OrderRepository.cs
+2026-08-13 17:09:21  apply_patch  C:\Users\dm117\117-training\training-repo\tests\OrderHub.Tests\OrderServiceQueryTests.cs
