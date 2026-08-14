@@ -45,3 +45,5 @@
 - 不要在 Controller / Service 直接使用 DbContext
 - 不要為了「順手」重構與當前任務無關的程式碼
 - 不要讀取或寫入任何機密檔（\*.pfx、appsettings.Production.json、user-secrets）
+
+- 如果MCP是有關係到Destructive=true的話,先向我確認是否繼續執行,待我確定后,才執行
