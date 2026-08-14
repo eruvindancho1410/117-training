@@ -1,0 +1,31 @@
+approvals_reviewer = "auto_review"
+
+[projects.'c:\users\dm117\117-training']
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 4
+
+[windows]
+# 沙盒：只能寫 workspace 內的檔案，預設不能連網
+sandbox_mode = "workspace-write"
+
+# 要跳出沙盒（連網、寫 workspace 外）或碰到 rules 標記的指令時詢問
+approval_policy = "on-request"
+sandbox = "elevated"
+
+[hooks.state]
+
+[hooks.state.'C:\Users\dm117\117-training\training-repo\.codex\hooks.json:pre_tool_use:0:0']
+trusted_hash = "sha256:740e0599c75cfb0f65c28032e0a6979f43b987f161aeeda1739ce3a9247fb8d4"
+
+[hooks.state.'C:\Users\dm117\117-training\training-repo\.codex\hooks.json:post_tool_use:0:0']
+trusted_hash = "sha256:3b92ad4656acb1f3cdbf1dd40040ececb19c38d524d308dad4a7ce34fb8b26b2"
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
+
+[mcp_servers.orderhub]
+command = "dotnet"
+args = ["run", "--project", "C:\\Users\\dm117\\117-training\\training-repo\\src\\OrderHub.Mcp"]
