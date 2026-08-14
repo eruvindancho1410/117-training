@@ -88,3 +88,9 @@
 ## 附錄：值得留下的對話片段
 
 （貼 1–2 段最有代表性的 prompt 與回應**摘要**——不用貼全文，重點是「我怎麼問」和「它怎麼答」。）
+
+
+活動2練習5- Resource,Prompt和Tool什麽差別?
+TOOL = AI 可以直接調用的程式能力
+PROMPT = 預先定義、可帶參數的常用 AI 工作流程/Prompt 模板，避免使用者重複寫 Prompt
+RESOURCE = 提供給 AI 讀取的資料與 Context，例如商業規則、文件、Schema、狀態定義
