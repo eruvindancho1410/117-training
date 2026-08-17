@@ -47,3 +47,6 @@
 - 不要讀取或寫入任何機密檔（\*.pfx、appsettings.Production.json、user-secrets）
 
 - 如果MCP是有關係到Destructive=true的話,先向我確認是否繼續執行,待我確定后,才執行
+- 絕對不要讀取、檢查、搜尋、輸出、複製或修改 `%APPDATA%\Microsoft\UserSecrets` 目錄下的任何檔案
+- 將 `%APPDATA%\Microsoft\UserSecrets` 視為嚴格禁止存取的範圍
+- 絕對不要取得或讀取 ASP.NET Core User Secrets 的內容
